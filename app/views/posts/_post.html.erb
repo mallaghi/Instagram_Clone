@@ -29,4 +29,11 @@
     <%= post.show_likes %>
   </p>
 
+  <p>
+    <strong>Images:</strong>
+    <% post.images.each do |image| %>
+      <div><%= cl_image_tag image.key %> </div>
+    <% end %>
+  </p>
+
 </div>
