@@ -1,4 +1,4 @@
-<div id="<%= dom_id post %>">
+<div class="my-3" id="<%= dom_id post %>">
 
   <div class="card" style="width: 25rem;">
     <div class="card-header bg-white">
@@ -19,8 +19,7 @@
             </a>
 
             <ul class="dropdown-menu">
-              <li> <%= button_to "Delete post", @post, method: :delete, class: "dropdown-item"%> </li>
-              <li> <%= link_to "Edit post", edit_post_path(@post), class: "dropdown-item" %></li>
+  
             </ul>
           </div>
         </div>
