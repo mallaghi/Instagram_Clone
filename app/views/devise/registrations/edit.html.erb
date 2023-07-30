@@ -9,7 +9,7 @@
 
    <div class="w-50 ms-5 d-flex flex-column p-4">
       <div class="d-flex align-items-center">
-        <%= image_tag resource.profile_pic.attached? ? resource.profile_pic : 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 3rem; max-height:3rem" %>
+        <%= cl_image_tag resource.profile_pic.attached? ? resource.profile_pic.key : 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 3rem; max-height:3rem" %>
         <div class="d-flex flex-column mx-3 justify-content-center">
           <small class="fw-bold" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:10rem"><%= resource.username %></small>
           <%= f.file_field :profile_pic, class: "form-control form-control-sm" %>
