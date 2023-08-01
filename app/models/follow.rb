@@ -8,6 +8,7 @@ class Follow < ApplicationRecord
   end
 
   private
+  
   def check_privacy
     self.accepted = true unless self.followed.private
   end
