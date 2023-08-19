@@ -1,14 +1,14 @@
 <div class="my-3" id="<%= dom_id post %>">
 
-  <div class="card" style="width: 25rem;">
-    <div class="card-header bg-white">
+  <div class="card" style="width: 28rem; border:none;">
+    <div class="card-header bg-white" style="border:none;">
       <div class="d-flex justify-content-between">
         <div>
           <%= link_to post.user, class:  "a-decoration-none" do %>
             <% if post.user.profile_pic.attached? %>
-              <%= cl_image_tag post.user.profile_pic.key, class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+              <%= cl_image_tag post.user.profile_pic.key, class: "rounded-circle", style: "width: 2.5rem; height: 2.5rem; object-fit: cover; border: 2px solid #ccc" %>
             <% else %>
-              <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 10%" %>
+              <%= image_tag 'user-pp.png', class: "rounded-circle", style: "width: 2.5rem; border: 2px solid #ccc" %>
             <% end %>
           <% end %>
           <%= link_to post.user, class:  "a-decoration-none" do %>
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div class="card-body">
+    <div class="card-body" >
       <div id="post<%= post.id %>_images" class="carousel slide" data-bs-ride="true">
         <div class="carousel-inner">
           <% post.images.each_with_index do |img, i| %>
@@ -50,23 +50,23 @@
           <span class="carousel-control-next-icon bg-dark rounded-circle " aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
-        <div class="carousel-indicators" style="position:static">
+        <ol class="carousel-indicators list-unstyled mb-2">
           <% post.images.each_with_index do |img, i| %>
-            <button type="button" data-bs-target="#post<%= post.id %>_images" data-bs-slide-to="<%= i %>" class=" bg-dark <%= i==0 ?  'active' : '' %>" <%= i==0 ? 'aria-current="true"' : '' %> aria-label="Slide <%= i+1 %>"></button>
+            <li data-bs-target="#post<%= post.id %>_images" data-bs-slide-to="<%= i %>" class="<%= i == 0 ? 'active' : '' %>"></li>
           <% end %>
-        </div>
+        </ol>
       </div>
-       <%= render "posts/post_actions", post: post %>
+      <div class="mt-2"> <%= render "posts/post_actions", post: post %> </div>
       <p class="card-text"><span class="fw-bold"><%= post.user.username %></span> <%= post.caption %></p>
 
       <%= render "posts/post_comments", post: post %>
       <small class="text-muted">about <%= time_ago_in_words(post.created_at) %> ago</small>
     </div>
      <%= form_with url: comments_path, method: :post, data: {controller: "comments", action: "turbo:submit-end->comments#clear"} do |f| %>
-        <div class="card-footer d-flex justify-content-between bg-white">
+        <div class="card-footer d-flex justify-content-between bg-white"  style="border:none; border-bottom: 1px solid #ccc; border-radius: 0;">
           <%= f.hidden_field :post_id, value: post.id %>
-          <%= f.text_area :comment_body, class: "w-75", placeholder: "Add a comment...", style:"border:none" %>
-          <%= f.submit "Post", class: "text-primary fw-bold", style: "background:none;border:none"  %>
+          <%= f.text_area :comment_body, class: "w-75", placeholder: "Add a comment...", style:"border:none; outline: none; resize: none;" %>
+          <%= f.submit "Post", class: "text-primary fw-bold", style: "background:none; border:none"  %>
         </div>
     <% end %>
   </div>
