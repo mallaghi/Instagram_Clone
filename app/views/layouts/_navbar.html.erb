@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-light sticky-top bg-white border-bottom" style="border-color: #afafaf">
-  <div class="container-fluid w-100 mx-5" >
+  <div class="container-fluid w-75 " >
     <%= link_to root_path, class:"navbar-brand" do %>
       <%= image_tag 'logo.png', width: "100rem" %>
     <% end %>
@@ -11,8 +11,8 @@
          <%= form_with(url: users_path, method: :get, data: {turbo_frame: "search_results", controller: "search-results"}, class:"d-flex") do |f| %>
 
           <div class="dropdown">
-            <%= f.text_field :search_query, class: "form-control me-2 border-0 ", type:"search", placeholder:"Search",
-                "aria-label"=>"Search", style: "background: #efefef", "data-bs-toggle"=>"dropdown", "aria-expanded"=>"false",
+            <%= f.text_field :search_query, class: "form-control me-2 border-0 ", type:"search", placeholder:"🔍 Search",
+                "aria-label"=>"Search", style: "background: #efefef;  width: 20rem;", "data-bs-toggle"=>"dropdown", "aria-expanded"=>"false",
                 data: {action: "input->search-results#search"} %>
 
             <ul class="dropdown-menu p-4 mt-2" style="width:25rem">
