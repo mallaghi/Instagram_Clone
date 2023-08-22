@@ -61,7 +61,7 @@
             <% if current_user && current_user.profile_pic.attached? %>
               <%= cl_image_tag current_user.profile_pic.key, class: "rounded-circle", style: "width: 2.5rem; height:2.5rem;  border: 2px solid #ccc" %>
             <% else %>
-              <%= image_tag 'user-pp.png', class: "rounded-circle", style: "width: 2rem  border: 2px solid #ccc" %>
+              <%= image_tag 'user-pp.png', class: "rounded-circle", style: "width: 2.5rem; height:2.5rem;  border: 2px solid #ccc" %>
             <% end %>
           </a>
           <ul class="dropdown-menu">
