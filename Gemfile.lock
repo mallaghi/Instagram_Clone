@@ -163,9 +163,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.4-x86_64-linux)
-      racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.5.3)
     popper_js (2.11.8)
     public_suffix (5.0.3)
     puma (5.6.7)
@@ -237,7 +236,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.3-arm64-darwin)
-    sqlite3 (1.6.3-x86_64-linux)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     thor (1.2.2)
@@ -273,7 +271,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
-  x86_64-linux
 
 DEPENDENCIES
   activestorage-validator
@@ -287,6 +284,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1.2)
   importmap-rails
   jbuilder
+  pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.5)
   redis (~> 4.0)
