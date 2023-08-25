@@ -5,11 +5,8 @@
       <div class="d-flex justify-content-between">
         <div>
           <%= link_to post.user, class:  "a-decoration-none" do %>
-            <% if post.user.profile_pic.attached? %>
-              <%= cl_image_tag post.user.profile_pic.key, class: "rounded-circle", style: "width: 2.5rem; height: 2.5rem; object-fit: cover; border: 2px solid #ccc" %>
-            <% else %>
-              <%= image_tag 'user-pp.png', class: "rounded-circle", style: "width: 2.5rem; border: 2px solid #ccc" %>
-            <% end %>
+            <%= cl_image_tag post.user.profile_pic.attached? ? post.user.profile_pic.key : 'user-pp_dnor42' , class: "rounded-circle", style: "width: 2.5rem; height: 2.5rem; object-fit: cover; border: 2px solid #ccc" %>
+
           <% end %>
           <%= link_to post.user, class:  "a-decoration-none" do %>
             <span class="fw-bold mx-2"><%= post.user.username %></span>
@@ -38,7 +35,7 @@
         <div class="carousel-inner">
           <% post.images.each_with_index do |img, i| %>
             <div class="carousel-item <%= i == 0 ? 'active' : '' %>" style="height: 25rem">
-              <%= cl_image_tag img.key, class: "d-block w-100", style: "max-height: 100%; object-fit: cover;" %>
+              <%= cl_image_tag img.key, class: "d-block w-100", style: "height: 100%; object-fit: cover;" %>
             </div>
           <% end %>
         </div>
@@ -53,28 +50,22 @@
 
         <% if post.images.size > 1 %>
           <button class="carousel-control-prev" type="button" data-bs-target="#post<%= post.id %>_images" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+            <span class="carousel-control-prev-icon bg-outline " aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#post<%= post.id %>_images" data-bs-slide="next">
-            <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+            <span class="carousel-control-next-icon bg-outline " aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
       <% end %>
     </div>
       <div class="mt-2"> <%= render "posts/post_actions", post: post %> </div>
-      <p class="card-text"><span class="fw-bold"><%= post.user.username %></span> <%= post.caption %></p>
+      <p class="card-text p-0 m-0"><span class="fw-bold"><%= post.user.username %></span> <%= post.caption %></p>
 
       <%= render "posts/post_comments", post: post %>
       <small class="text-muted">about <%= time_ago_in_words(post.created_at) %> ago</small>
     </div>
-     <%= form_with url: comments_path, method: :post, data: {controller: "comments", action: "turbo:submit-end->comments#clear"} do |f| %>
-        <div class="card-footer d-flex justify-content-between bg-white"  style="border:none; border-bottom: 1px solid #ccc; border-radius: 0;">
-          <%= f.hidden_field :post_id, value: post.id %>
-          <%= f.text_area :comment_body, class: "w-75", placeholder: "Add a comment...", style:"border:none; outline: none; resize: none;" %>
-          <%= f.submit "Post", class: "text-primary fw-bold", style: "background:none; border:none"  %>
-        </div>
-    <% end %>
+
   </div>
 
 </div>

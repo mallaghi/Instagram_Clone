@@ -8,7 +8,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body d-flex">
-        <div class="border-end border-secondary mx-2" style="width:60%">
+        <div class="border-end border-secondary mx-2" style="width:40rem">
             <%= form.file_field :images, multiple: true, id: "post-images", required: true %>
           </div>
            <div style="width:40%">
@@ -23,11 +23,8 @@
               </div>
             <% end %>
               <div class="my-2">
-              <% if current_user.profile_pic.attached? %>
-                <%= image_tag current_user.profile_pic, class: "img-thumbnail rounded-circle", style: "width: 10%" %>
-              <% else %>
-                <%= image_tag 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 10%" %>
-              <% end %>
+                <%= cl_image_tag current_user.profile_pic.attached? ? current_user.profile_pic.key : 'user-pp_dnor42', class: "rounded-circle", style: "width: 2.5rem; height: 2.5rem" %>
+    
               <span class="fw-bold mx-2"><%= current_user.username %></span>
             </div>
             <div>

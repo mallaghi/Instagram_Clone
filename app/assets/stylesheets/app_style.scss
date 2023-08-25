@@ -20,7 +20,7 @@ body {
 }
 
 .images-section {
-  background-image: url(home-phone-bg.jpg);
+  background-image: url(home-phone-bg.png);
   background-size: contain;
   background-repeat: no-repeat;
   max-width: 100%;
@@ -108,4 +108,14 @@ body {
 .a-decoration-none {
   text-decoration: none;
   color: black
+}
+
+.carousel-indicators [data-bs-target]{
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.faded-text{
+  opacity: 0.6;
 }

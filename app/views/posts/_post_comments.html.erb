@@ -17,11 +17,22 @@
           <h5 class="modal-title" id="post<%= post.id %>_commentsModalLabel">Post Comments</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" data-controller="modal" data-target="modal.modal">
           <div class="d-flex flex-column gap-3" >
-            <% post.comments.each do |comment| %>
-              <%= render "posts/modal_comment", comment: comment %>
+          <% if post.comments.empty? %>
+            <p class="faded-text"> 0 comments </p>
+           <% else %>
+              <% post.comments.each do |comment| %>
+                <%= render "posts/modal_comment", comment: comment %>
+             <% end %>
             <% end %>
+            <%= form_with url: comments_path, method: :post, data: {controller: "comments", action: "turbo:submit-end->comments#clear"} do |f| %>
+              <div class="card-footer d-flex justify-content-between bg-white"  style="border:none; border-top: 1.5px solid #ccc; border-radius: 0;">
+                <%= f.hidden_field :post_id, value: post.id %>
+                <%= f.text_area :comment_body, class: "w-75", placeholder: "Add a comment...", style:"border:none; outline: none; resize: none;" %>
+                <%= f.submit "Post", data: { action: "click->modal#close" }, class: "text-primary fw-bold", style: "background:none; border:none"  %>
+              </div>
+              <% end %>
           </div>
         </div>
       </div>
