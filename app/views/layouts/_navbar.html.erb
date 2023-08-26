@@ -36,7 +36,7 @@
               <li>
                 <div class="d-flex justify-content-between">
                   <div class="d-flex">
-                     <%= cl_image_tag fr.follower.profile_pic.attached? ? fr.follower.profile_pic.key : 'user-pp.png', class: "img-thumbnail rounded-circle", style: "width: 2.5rem" %>
+                     <%= cl_image_tag fr.follower.profile_pic.attached? ? fr.follower.profile_pic.key : 'user-pp_xuzmvv', class: "img-thumbnail rounded-circle", style: "width: 2.5rem" %>
                     <div class="d-flex flex-column mx-3 justify-content-center">
                       <small class="fw-bold" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:5rem"><%= link_to fr.follower, class:  "a-decoration-none" do %><%= fr.follower.username %><% end %></small>
                     </div>
@@ -61,7 +61,7 @@
             <% if current_user && current_user.profile_pic.attached? %>
               <%= cl_image_tag current_user.profile_pic.key, class: "rounded-circle", style: "width: 2.5rem; height:2.5rem;  border: 2px solid #ccc" %>
             <% else %>
-              <%= image_tag 'user-pp.png', class: "rounded-circle", style: "width: 2.5rem; height:2.5rem;  border: 2px solid #ccc" %>
+              <%= cl_image_tag 'user-pp_xuzmvv', class: "rounded-circle", style: "width: 2.5rem; height:2.5rem;  border: 2px solid #ccc" %>
             <% end %>
           </a>
           <ul class="dropdown-menu">
