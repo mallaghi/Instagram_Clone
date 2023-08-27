@@ -4,7 +4,11 @@
   <div class="w-50 d-flex flex-column gap-4">
     <div class="d-flex gap-3 align-items-center">
       <p class="m-0 fw-bold"><%= user.username%></p>
-      <button class="btn border border-1"> Message </button>
+     <% if user != current_user %>
+       <%= link_to chat_path(other_user_id: current_user.id), class: "message-icon" do %>
+            <i class="fa-regular fa-message" style="color: #009EFF;"></i>
+          <% end %></h4>
+      <% end %>
      <%= render 'layouts/shared/follow_state', user: user %>
       <% if user == current_user %>
         <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-transparent border"%>
