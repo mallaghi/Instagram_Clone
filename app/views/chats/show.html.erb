@@ -1,54 +1,55 @@
-<div class="container-fluid p-0">
-  <div class="py-3">
-    <h3 class="text-center"><strong>Inbox</strong></h3>
-  </div>
-  <div class="row g-0">
-    <div class="col-md-4 bg-light">
-      <div class="list-group list-group-flush">
-        <% @chats.each do |chat| %>
-          <% other_user_username = chat.other_user_username(current_user) %>
-          <% other_user = User.find_by(username: other_user_username) %>
-          <a href="#" class="list-group-item list-group-item-action chat-link" data-chat-id="<%= chat.id %>">
-            <div class="d-flex align-items-center">
-              <%= cl_image_tag 'user-pp_xuzmvv', class: "avatar me-3 rounded-circle" %>
-              <div class="flex-grow-1">
-                <div class="name">
-                  <%= link_to chat_path(chat) do %>
-                    <%= other_user.username %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </a>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-md-8 bg-white">
-      <div class="p-3">
-        <div class="chat-sub-header d-flex justify-content-between align-items-center text-white py-2 mb-3">
-          <p class="mb-0 fw-bold">You are now chatting with <strong><%= @chat.name %></strong></p>
-          <!-- Additional buttons or actions can be placed here -->
+<!-- Messaging Container -->
+<div class="container chat-container mt-4">
+  <div class="row">
+    <!-- Sidebar (List of Conversations) -->
+    <div class="col-md-4 sidebar p-0">
+      <div class="card">
+        <div class="card-header py-3">
+          Messages
         </div>
-        <div class="messages" data-chat-subscription-target="messages" data-controller="chat-subscription">
-          <% @chat.messages.each do |message| %>
-            <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %> mb-3">
-              <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-                <%= render "messages/message", message: message %>
-              </div>
-            </div>
+        <div class="card-body">
+          <!-- List of conversations goes here -->
+          <% @chats.each do |chat| %>
+          <% @other_user_username = chat.other_user_username(current_user) %>
+          <% @other_user = User.find_by(username: @other_user_username) %>
+          <ul class="list-group">
+            <li class="list-group-item m-0" data-chat-subscription-target="user" data-controller="chat-subscription">
+              <%= link_to chat_path(chat) do %>
+               <%= cl_image_tag @other_user.profile_pic.attached? ? @other_user.profile_pic.key : 'user-pp_xuzmvv' , class: "rounded-circle", style: "width: 2.5rem; height: 2.5rem; object-fit: cover; border: 2px solid #ccc" %> <%=  @other_user_username.capitalize %>
+                 <br>
+                 <small class="faded-text mx-5"> <%= chat.messages.empty? ? ' ' :  "@#{chat.messages.last.user.username}: #{chat.messages.last.content} " %> </small>
+              <% end %>
+            </li>
+          </ul>
           <% end %>
         </div>
-        <%= turbo_frame_tag "message-frame" do %>
-          <!-- Frame content, if needed -->
-        <% end %>
-        <div class="input-form mt-3 d-flex">
-          <%= simple_form_for [@chat, Message.new], html: { data: { controller: 'chat-subscription', action: "turbo:submit-end->chat-subscription#resetForm" }, class: "d-flex" } do |f| %>
-            <div class="flex-grow-1">
-              <%= f.input :content, label: false, placeholder: "Message", wrapper_html: { class: "form-group mb-0" } %>
+      </div>
+    </div>
+
+    <!-- Chat Area -->
+    <div class="col-md-8 chat-area p-0">
+      <div class="card">
+        <div class="card-header">
+        <% @other_user_username = @chat.other_user_username(current_user) %>
+           <%= cl_image_tag @other_user.profile_pic.attached? ? @other_user.profile_pic.key : 'user-pp_xuzmvv' , class: "rounded-circle", style: "width: 3rem; height: 3rem; object-fit: cover; border: 2px solid #ccc" %> <%=  @other_user_username.capitalize %>
+        </div>
+        <div class="card-body"  data-chat-subscription-target="messages" data-controller='chat-subscription' data-chat-subscription-chat-id-value="<%= @chat.id %>" data-chat-subscription-current-user-id-value="<%= current_user.id %>">
+          <% @chat.messages.each do |message| %>
+          <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+            <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+              <%= render "messages/message", message: message %>
             </div>
-            <div class="col-auto">
-              <%= f.submit "Send", class: "btn btn-primary" %>
-            </div>
+          </div>
+          <% end %>
+        </div>
+        <div class="card-footer">
+          <%= simple_form_for [@chat, Message.new],
+            html: { data: { controller: 'chat-subscription', action: "turbo:submit-end->chat-subscription#resetForm" }, class: "d-flex" } do |f| %>
+            <%= f.input :content,
+              label: false,
+              placeholder: "Message",
+              wrapper_html: {class: "flex-grow-1"} %>
+            <%= f.submit "Send", class: "btn-flat mb-3" %>
           <% end %>
         </div>
       </div>
