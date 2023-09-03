@@ -127,94 +127,115 @@ a {
 
 
 // CHAT STYLING
-/* Style the overall container */
+
 .chat-container {
-  padding-top: 10px;
-
+ width: 100%;
+ overflow: hidden;
 }
 
-/* Style the conversation list sidebar */
+.card{
+  height: calc(100vh - 50px);
+  width: calc(100vw - 350px);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 0%;
+  overflow: hidden;
+}
+
+
 .sidebar {
-  max-width: 350px;/* Adjust the width as needed */
+  max-width: 350px;
   overflow-y: scroll;
- 
+  position: sticky;
 }
 
 
-
-/* Style the conversation list items */
 .list-group-item {
   cursor: pointer;
   border: none;
 
 }
 
-/* Style the chat area */
+
 .chat-area {
   border: none;
 
 }
 
-/* Style the chat header */
+
 .card-header {
-  background-color: #fff; /* Adjust the background color */
+  background-color: #fff;
   border: none;
+  margin-left: 25px;
+  max-width: 330px;
 }
 
-/* Style the chat messages */
+.chat-header{
+  border-bottom: 1px solid #ddd;
+  margin-left: 3px;
+  background-color: #fff;
+
+}
+
 .card-body {
   padding: 20px;
-  height: calc(100vh - 250px);
   overflow-y: scroll;
+
 }
 
-/* Style the message input field and send button */
+
 .card-footer {
-  background-color: #fff; /* Adjust the background color */
-  border-top: 1px solid #ddd; /* Add a border at the top of the footer */
+  background-color: #fff;
+  border-top: 1px solid #ddd;
   padding: 10px;
 }
 
 .input-group {
   margin-bottom: 10px;
+
 }
 
-/* Customize the send button */
 .btn-flat {
-  background-color: white; /* Adjust the button color */
-  color: #38a1db;; /* Adjust the button text color */
+  background-color: white;
+  color: #38a1db;
   border: none;
   font-weight: bold;
 }
 
-/* Hover effect for conversation list items */
 .list-group-item:hover {
-  background-color: #f0f0f0; /* Adjust the hover background color */
+  background-color: #f0f0f0;
 }
 
-/* Active conversation item */
 .list-group-item.active {
   background-color: #fff;
-  border-left: 3px solid #38a1db; /* Highlight the active conversation */
+  border-left: 3px solid #38a1db;
+
 }
 
 
 
 .sender-style, .receiver-style {
-  width: 50%;
+  padding: 10px;
   max-width: 400px;
-  border-radius: 25%;
-  padding: 8px;
-  min-height: 80px;
+  border-radius: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
 }
+
+
 
 .sender-style {
   background-color: #38a1db;
   color: white;
+  text-align: right;
+
 }
 
 .receiver-style {
-  background-color: lightgray;
+  background-color: rgb(230, 230, 230);
+  text-align: left;
 }
 
   .messages {
@@ -239,7 +260,7 @@ a {
   }
 
   .sidebar::-webkit-scrollbar {
-    width: 0;               /* width of the entire scrollbar */
+    width: 0;
   }
 
   .sidebar::-webkit-scrollbar-thumb {

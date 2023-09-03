@@ -5,9 +5,7 @@
     <div class="d-flex gap-3 align-items-center">
       <p class="m-0 fw-bold"><%= user.username%></p>
      <% if user != current_user %>
-       <%= link_to chat_path(other_user_id: user.id), class: "message-icon" do %>
-            <i class="fa-regular fa-message" style="color: #009EFF;"></i>
-          <% end %>
+       <%= link_to chat_path(other_user_id: user.id), class: "btn border border-1", style: "color: #009EFF;" do %> Message <% end %>
       <% end %>
      <%= render 'layouts/shared/follow_state', user: user %>
       <% if user == current_user %>
