@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy]
   resources :users, only: [:show, :index]
 
+  resources :chats, only: [:show] do
+    resources :messages, only: [:create], param: :chat_id
+  end
+
   post "follow", to: 'follows#follow', as: :follow
   delete 'unfollow', to: 'follows#unfollow', as: :unfollow
   delete 'cancel_request', to: 'follows#cancel_request', as: :cancel_request
