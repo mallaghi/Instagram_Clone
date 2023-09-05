@@ -3,18 +3,16 @@ html {
 }
 
 body {
-  // background-color: #fafafa;
   height: 100%;
 }
-
 
 .home-sections {
-  height: 100%;
   width: 80%;
+  margin: 0 auto; /* Center the content */
 }
 
+
 .images-section, .login-section  {
-  height: 95%;
   width: 45%;
   background-position-x: right;
 }
@@ -47,10 +45,10 @@ body {
 .facebook {
   max-width: 1rem;
   height: auto;
-  margin-right: .5rem
+  margin-right: .5rem;
 }
 
-.card::-webkit-scrollbar{
+.card::-webkit-scrollbar {
   width: 0;
 }
 
@@ -82,6 +80,7 @@ body {
   transform: translate(-50%, -50%);
   text-shadow: 1px 1px 10px #000000a6;
 }
+
 .profile-post:hover img {
   opacity: 50%;
 }
@@ -89,7 +88,6 @@ body {
 .profile-post:hover .profile-post-likes {
   visibility: visible;
 }
-
 
 .profile-edit-btn {
   text-decoration: none;
@@ -99,7 +97,6 @@ body {
   background-color: rgb(248, 248, 248);
 }
 
-
 .profile-edit-btn:hover {
   background-color: rgb(248, 248, 248);
   color: black;
@@ -107,16 +104,16 @@ body {
 
 .a-decoration-none {
   text-decoration: none;
-  color: black
+  color: black;
 }
 
-.carousel-indicators [data-bs-target]{
+.carousel-indicators [data-bs-target] {
   border-radius: 50%;
   width: 10px;
   height: 10px;
 }
 
-.faded-text{
+.faded-text {
   opacity: 0.6;
 }
 
@@ -125,15 +122,30 @@ a {
   color: #333;
 }
 
-
-// CHAT STYLING
-
-.chat-container {
- width: 100%;
- overflow: hidden;
+#story-border {
+  padding: 3px; border-radius: 50%; display: inline-block;
+    background: orange;
+    background: -webkit-linear-gradient(orange, rgb(255, 0, 0));
+    background: -o-linear-gradient(orange, rgb(255, 0, 0));
+    background: -moz-linear-gradient(orange, rgb(255, 0, 0));
+    background: linear-gradient(orange, rgb(255, 0, 0));
 }
 
-.chat-card{
+.img-thumbnail-custom {
+
+  background-color: var(--bs-body-bg);
+  border: none;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+/* CHAT STYLING */
+
+.chat-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.chat-card {
   height: calc(100vh - 50px);
   width: calc(100vw - 350px);
   padding: 0;
@@ -143,26 +155,20 @@ a {
   overflow: hidden;
 }
 
-
 .sidebar {
   max-width: 350px;
   overflow-y: scroll;
   position: sticky;
 }
 
-
 .list-group-item {
   cursor: pointer;
   border: none;
-
 }
-
 
 .chat-area {
   border: none;
-
 }
-
 
 .chat-card-header {
   background-color: #fff;
@@ -171,19 +177,16 @@ a {
   max-width: 330px;
 }
 
-.chat-header{
+.chat-header {
   border-bottom: 1px solid #ddd;
   margin-left: 3px;
   background-color: #fff;
-
 }
 
 .card-body {
   padding: 20px;
   overflow-y: scroll;
-
 }
-
 
 .card-footer {
   background-color: #fff;
@@ -193,7 +196,6 @@ a {
 
 .input-group {
   margin-bottom: 10px;
-
 }
 
 .btn-flat {
@@ -210,10 +212,7 @@ a {
 .list-group-item.active {
   background-color: #fff;
   border-left: 3px solid #38a1db;
-
 }
-
-
 
 .sender-style, .receiver-style {
   padding: 10px;
@@ -224,13 +223,10 @@ a {
   margin-bottom: 5px;
 }
 
-
-
 .sender-style {
   background-color: #38a1db;
   color: white;
   text-align: right;
-
 }
 
 .receiver-style {
@@ -238,32 +234,101 @@ a {
   text-align: left;
 }
 
-  .messages {
-    height: 100%;
-    overflow-y: scroll;
-    padding: 1rem;
-    border-bottom: none;
+.messages {
+  height: 100%;
+  overflow-y: scroll;
+  padding: 1rem;
+  border-bottom: none;
+}
 
-    #new_message {
+#new_message {
+  padding: 1rem;
+}
 
-      padding: 1rem;
+.form-group {
+  margin-bottom: 0;
+}
 
-      .form-group {
-        margin-bottom: 0;
-      }
-    }
+.card-body::-webkit-scrollbar {
+  width: 0;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  width: 0;
+}
+
+/* Responsive styles */
+
+/* Small screens (up to 576px) */
+@media (max-width: 576px) {
+  .home-sections {
+    width: 90%;
+  }
+  .images-section, .login-section {
+    width: 100%;
+    background-position-x: center;
+    background-size: cover;
+  }
+  .card-img-top {
+    max-width: 100%;
+  }
+  .navbar-collapse {
+    justify-content: flex-end; /* Stack navigation items on small screens */
   }
 
-  .card-body::-webkit-scrollbar {
-   width:0;
-
+  .dropdown-menu {
+    width: 100%; /* Full width dropdown menu on small screens */
   }
+}
 
-  .sidebar::-webkit-scrollbar {
-    width: 0;
+/* Medium screens (577px - 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+  .home-sections {
+    width: 85%;
   }
-
-  .sidebar::-webkit-scrollbar-thumb {
-    width: 0;
-
+  .images-section, .login-section {
+    width: 100%;
+    background-position-x: center;
+    background-size: cover;
   }
+  .card-img-top {
+    max-width: 75%;
+  }
+  .me-lg-5 {
+    margin-right: 0 !important;
+  }
+}
+
+/* Large screens (769px - 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .home-sections {
+    width: 70%;
+  }
+  .images-section, .login-section {
+    width: 50%;
+    background-position-x: right;
+    background-size: contain;
+  }
+  .card-img-top {
+    max-width: 60%;
+  }
+}
+
+/* Extra-large screens (993px and above) */
+@media (min-width: 993px) {
+  .home-sections {
+    width: 60%;
+  }
+  .images-section, .login-section {
+    width: 45%;
+    background-position-x: right;
+    background-size: contain;
+  }
+  .card-img-top {
+    max-width: 50%;
+  }
+}
