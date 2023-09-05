@@ -8,7 +8,7 @@
           <strong>Messages</strong>
           <i class="fa-solid l fa-pen-to-square" style="color: #000000;"> </i>
         </div>
-        <div class="card-body">
+        <div class="card-body chat-card-body">
           <% @chats.each do |chat| %>
             <% @other_user_username = chat.other_user_username(current_user) %>
             <% @other_user = User.find_by(username: @other_user_username) %>
@@ -36,7 +36,7 @@
             <%= @other_user_username.capitalize %>
           <% end %>
         </div>
-        <div class="card-body" data-chat-subscription-target="messages" data-controller='chat-subscription' data-chat-subscription-chat-id-value="<%= @chat.id %>" data-chat-subscription-current-user-id-value="<%= current_user.id %>">
+        <div class="card-body chat-card-body" data-chat-subscription-target="messages" data-controller='chat-subscription' data-chat-subscription-chat-id-value="<%= @chat.id %>" data-chat-subscription-current-user-id-value="<%= current_user.id %>">
           <% @chat.messages.each do |message| %>
             <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end ' : 'justify-content-start' %> ">
               <div class="<%= message.sender?(current_user) ? 'sender-style ' : 'receiver-style' %>">
@@ -45,7 +45,7 @@
             </div>
           <% end %>
         </div>
-        <div class="card-footer">
+        <div class="card-footer chat-card-footer">
           <%= simple_form_for [@chat, Message.new],
             html: { data: { controller: 'chat-subscription', action: "turbo:submit-end->chat-subscription#resetForm" }, class: "d-flex" } do |f| %>
               <%= f.input :content,
