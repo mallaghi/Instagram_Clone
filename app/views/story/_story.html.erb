@@ -1,4 +1,7 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
-  <%= cl_image_tag 'user-pp_xuzmvv', class: "img-thumbnail rounded-circle border border-2 border-primary", style: "width: 3.5rem" %>
-  <small style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 3.5rem"><%= User.first.username %></small>
+  <% user = User.all.sample %>
+  <div id="story-border">
+  <%= cl_image_tag user.profile_pic.attached? ? user.profile_pic.key : 'user-pp_xuzmvv', class: "img-thumbnail-custom rounded-circle border-2", style: "width: 3.5rem; height:3.5rem;  " %>
+  </div>
+  <small style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 3.5rem"> <%=  user.username %> </small>
 </div>
