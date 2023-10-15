@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :chat_users
   has_many :chats, through: :chat_users
   has_many :messages, dependent: :destroy
-  
+
   has_many :posts
   has_many :likes
   has_many :comments
@@ -32,4 +32,6 @@ class User < ApplicationRecord
   def cancel_request(user)
     self.waiting_sent_requests.find_by(followed: user)&.destroy
   end
+
+
 end

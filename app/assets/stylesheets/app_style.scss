@@ -8,18 +8,20 @@ body {
 
 .home-sections {
   width: 80%;
+  height: 100%;
   margin: 0 auto; /* Center the content */
 }
 
 
 .images-section, .login-section  {
-  width: 45%;
+  height: 75%;
+  width: 55%;
   background-position-x: right;
 }
 
 .images-section {
   background-image: url(home-phone-bg.png);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   max-width: 100%;
   max-height: 100%;
@@ -259,76 +261,4 @@ a {
 
 .sidebar::-webkit-scrollbar-thumb {
   width: 0;
-}
-
-/* Responsive styles */
-
-/* Small screens (up to 576px) */
-@media (max-width: 576px) {
-  .home-sections {
-    width: 90%;
-  }
-  .images-section, .login-section {
-    width: 100%;
-    background-position-x: center;
-    background-size: cover;
-  }
-  .card-img-top {
-    max-width: 100%;
-  }
-  .navbar-collapse {
-    justify-content: flex-end; /* Stack navigation items on small screens */
-  }
-
-  .dropdown-menu {
-    width: 100%; /* Full width dropdown menu on small screens */
-  }
-}
-
-/* Medium screens (577px - 768px) */
-@media (min-width: 577px) and (max-width: 768px) {
-  .home-sections {
-    width: 85%;
-  }
-  .images-section, .login-section {
-    width: 100%;
-    background-position-x: center;
-    background-size: cover;
-  }
-  .card-img-top {
-    max-width: 75%;
-  }
-  .me-lg-5 {
-    margin-right: 0 !important;
-  }
-}
-
-/* Large screens (769px - 992px) */
-@media (min-width: 769px) and (max-width: 992px) {
-  .home-sections {
-    width: 70%;
-  }
-  .images-section, .login-section {
-    width: 50%;
-    background-position-x: right;
-    background-size: contain;
-  }
-  .card-img-top {
-    max-width: 60%;
-  }
-}
-
-/* Extra-large screens (993px and above) */
-@media (min-width: 993px) {
-  .home-sections {
-    width: 60%;
-  }
-  .images-section, .login-section {
-    width: 45%;
-    background-position-x: right;
-    background-size: contain;
-  }
-  .card-img-top {
-    max-width: 50%;
-  }
 }
