@@ -33,7 +33,9 @@ gem "jbuilder"
 
 gem "devise"
 
+gem 'ruby-vips'
 
+gem "aws-sdk-rekognition"
 gem "cloudinary"
 gem "font-awesome-sass", "~> 6.1.2"
 
