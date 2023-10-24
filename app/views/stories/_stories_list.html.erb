@@ -1,0 +1,31 @@
+<div class="card d-flex flex-row align-items-center gap-3 px-3" style="width: 28rem; height: 7rem; overflow-x:scroll; border:none; border-bottom: 1px solid #ccc;  border-radius: 0;"  >
+  <% (0...7).each do %>
+    <%= render "stories/story" %>
+  <% end %>
+</div>
+
+<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storyModal">
+  Add a new story!
+</a>
+
+<!-- The Modal -->
+<div class="modal fade w-100" id="storyModal" tabindex="-1" role="dialog" aria-labelledby="storyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="storyModalLabel">Add a new story!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <div class="modal-body">
+       <%= form_with(model: @story) do |f| %>
+          <div class="border-end border-secondary mx-2" style="">
+            <%= f.file_field :image, id: "story-image", required: true %>
+           </div>
+          <div class="modal-footer">
+            <%= f.submit "share story", class: "btn btn-secondary" %>
+          </div>
+       <% end %>
+    </div>
+    </div>
+  </div>
+</div>
