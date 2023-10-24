@@ -25,6 +25,6 @@ function loadFilePond() {
     storeAsFile: true,
     allowMultiple: true,
     allowReorder: true,
-    acceptedFileTypes: ['image/*'],
+    acceptedFileTypes: ['image'],
   });
 }
