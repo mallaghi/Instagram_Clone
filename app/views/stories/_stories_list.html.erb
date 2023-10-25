@@ -1,23 +1,43 @@
-<div class="card d-flex flex-row align-items-center gap-3 px-3" style="width: 28rem; height: 7rem; overflow-x:scroll; border:none; border-bottom: 1px solid #ccc;  border-radius: 0;"  >
-  <% (0...7).each do %>
-    <%= render "stories/story" %>
+<div class="card d-flex flex-row align-items-center gap-3 px-3" style="width: 28rem; height: 7rem; overflow-x:scroll; border:none; border-bottom: 1px solid #ccc;  border-radius: 0;">
+  <% if current_user.followings.size > 0 %>
+    <% @following = [] %>
+    <% current_user.followings.each do |follower| %>
+      <% if follower.stories.any? %>
+        <% @following << follower %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% @following = User.all %>
+  <% end %>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+  <div id="story-border">
+    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#newStoryModal">
+      <%= cl_image_tag 'plus_hnfuf2', class: "img-thumbnail-custom rounded-circle border-2", style: "width: 3.5rem; height:3.5rem; " %>
+  </a>
+  </div>
+  <small style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 3.5rem"> New Story </small>
+</div>
+  <% @following.each do |followed| %>
+    <%= render "stories/story", followed: followed %>
   <% end %>
 </div>
 
-<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storyModal">
+
+
+<%# <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storyModal">
   Add a new story!
-</a>
+</a> %>
 
 <!-- The Modal -->
-<div class="modal fade w-100" id="storyModal" tabindex="-1" role="dialog" aria-labelledby="storyModalLabel" aria-hidden="true">
+<div class="modal fade w-100" id="newStoryModal" tabindex="-1" role="dialog" aria-labelledby="newStoryModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="storyModalLabel">Add a new story!</h5>
+        <h5 class="modal-title" id="newStoryModalLabel">Add a new story!</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     <div class="modal-body">
-       <%= form_with(model: @story) do |f| %>
+       <%= form_with(model: Story) do |f| %>
           <div class="border-end border-secondary mx-2" style="">
             <%= f.file_field :image, id: "story-image", required: true %>
            </div>

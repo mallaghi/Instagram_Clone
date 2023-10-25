@@ -1,13 +1,39 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
-  <% if current_user.followings.size > 0 %>
-    <% @following = current_user.followings.sample %>
-    <% else %>
-     <% @following = User.all.sample %>
-     <% end %>
   <div id="story-border">
-  <%= cl_image_tag @following.profile_pic.attached? ? @following.profile_pic.key : 'user-pp_xuzmvv', class: "img-thumbnail-custom rounded-circle border-2", style: "width: 3.5rem; height:3.5rem; " %>
+     <a href="#" class="" data-bs-toggle="modal" data-bs-target="#storyModal">
+      <%= cl_image_tag followed.profile_pic.attached? ? followed.profile_pic.key : 'user-pp_xuzmvv', class: "img-thumbnail-custom rounded-circle border-2", style: "width: 3.5rem; height:3.5rem; " %>
+     </a>
   </div>
-  <small style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 3.5rem"> <%=  @following.username %> </small>
+  <small style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 3.5rem"> <%=  followed.username %> </small>
 </div>
 
 
+<div class="modal fade" id="storyModal" tabindex="-1" role="dialog" aria-labelledby="storyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="storyModalLabel">@<%=followed.username %>'s story</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="storyCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% followed.stories.each_with_index do |story, index| %>
+              <div class="carousel-item <%= 'active' if index == 0 %>">
+                <%= cl_image_tag story.image.key, class: "d-block w-100", style: "height: 70vh; object-fit: cover;" %>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#storyCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#storyCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
