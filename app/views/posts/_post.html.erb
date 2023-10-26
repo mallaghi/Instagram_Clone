@@ -5,8 +5,15 @@
       <div class="d-flex justify-content-between">
         <div>
           <%= link_to post.user, class:  "a-decoration-none" do %>
+            <% if post.user.stories.any? %>
+              <div id="story-border">
+              <a href="#" class="" data-bs-toggle="modal" data-bs-target="#<%=post.user.id%>storyModal">
+                <%= cl_image_tag post.user.profile_pic.attached? ? post.user.profile_pic.key : 'user-pp_xuzmvv', class: "img-thumbnail-custom rounded-circle border-2", style: "width: 2.5rem; height:2.5rem; " %>
+              </a>
+              </div>
+            <% else %>
             <%= cl_image_tag post.user.profile_pic.attached? ? post.user.profile_pic.key : 'user-pp_xuzmvv' , class: "rounded-circle", style: "width: 2.5rem; height: 2.5rem; object-fit: cover; border: 2px solid #ccc" %>
-
+            <% end %>
           <% end %>
           <%= link_to post.user, class:  "a-decoration-none" do %>
             <span class="fw-bold mx-2"><%= post.user.username %></span>

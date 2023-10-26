@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   has_many :posts
+  has_many :stories
   has_many :likes
   has_many :comments
   has_many :follow_requests, -> { where(accepted: false) }, class_name: "Follow", foreign_key: "followed_id"

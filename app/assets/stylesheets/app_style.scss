@@ -125,12 +125,46 @@ a {
 }
 
 #story-border {
-  padding: 3px; border-radius: 50%; display: inline-block;
-    background: orange;
-    background: -webkit-linear-gradient(orange, rgb(255, 0, 0));
-    background: -o-linear-gradient(orange, rgb(255, 0, 0));
-    background: -moz-linear-gradient(orange, rgb(255, 0, 0));
-    background: linear-gradient(orange, rgb(255, 0, 0));
+  padding: 3px;
+  border-radius: 50%;
+  display: inline-block;
+  background: orange;
+  background: -webkit-linear-gradient(orange, rgb(255, 0, 0));
+  background: -o-linear-gradient(orange, rgb(255, 0, 0));
+  background: -moz-linear-gradient(orange, rgb(255, 0, 0));
+  background: linear-gradient(orange, rgb(255, 0, 0));
+}
+
+#new-story-border {
+  position: relative;
+  padding: 3px;
+  border-radius: 50%;
+  display: inline-block;
+  background: green;
+  background: -webkit-linear-gradient(green, rgb(61, 208, 63));
+  background: -o-linear-gradient(green,  rgb(61, 208, 63));
+  background: -moz-linear-gradient(green,  rgb(61, 208, 63));
+  background: linear-gradient(green, rgb(61, 208, 63));
+
+}
+
+#new-story-border::after {
+  height: 100%;
+  width: 100%;
+  content: "+";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: rgba(33, 42, 37, 0.5);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
 
 .img-thumbnail-custom {
