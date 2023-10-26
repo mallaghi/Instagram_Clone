@@ -15,8 +15,8 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    return if current_user != @story.user || Time.now < @story.expires_at
     @story.destroy
+  
   end
 
   private

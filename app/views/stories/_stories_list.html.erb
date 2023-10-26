@@ -1,6 +1,10 @@
 <div class="card d-flex flex-row align-items-center gap-3 px-3" style="width: 28rem; height: 7rem; overflow-x:scroll; border:none; border-bottom: 1px solid #ccc;  border-radius: 0;">
   <% if current_user.followings.size > 0 %>
     <% @following = [] %>
+    <% if current_user.stories.any? %>
+       <% current_user.username =  "You" %>
+      <% @following << current_user %>
+    <% end %>
     <% current_user.followings.each do |follower| %>
       <% if follower.stories.any? %>
         <% @following << follower %>
@@ -10,23 +14,18 @@
     <% @following = User.all %>
   <% end %>
   <div class="d-flex flex-column justify-content-center align-items-center">
-  <div id="story-border">
+  <div id="new-story-border" >
     <a href="#" class="" data-bs-toggle="modal" data-bs-target="#newStoryModal">
-      <%= cl_image_tag 'plus_hnfuf2', class: "img-thumbnail-custom rounded-circle border-2", style: "width: 3.5rem; height:3.5rem; " %>
+      <%= cl_image_tag current_user.profile_pic.attached? ? current_user.profile_pic.key : 'user-pp_xuzmvv', class: "img-thumbnail-custom rounded-circle border-2", style: "width: 3.5rem; height:3.5rem; " %>
   </a>
   </div>
-  <small style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 3.5rem"> New Story </small>
+  <small style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 3.5rem"> New</small>
 </div>
   <% @following.each do |followed| %>
     <%= render "stories/story", followed: followed %>
   <% end %>
 </div>
 
-
-
-<%# <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storyModal">
-  Add a new story!
-</a> %>
 
 <!-- The Modal -->
 <div class="modal fade w-100" id="newStoryModal" tabindex="-1" role="dialog" aria-labelledby="newStoryModalLabel" aria-hidden="true">
