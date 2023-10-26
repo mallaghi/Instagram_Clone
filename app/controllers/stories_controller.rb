@@ -12,11 +12,12 @@ class StoriesController < ApplicationController
     @story = current_user.stories.new(story_params)
     @story.expires_at = Time.now + 24.hours
     @story.save
+    redirect_to root_path
   end
 
   def destroy
     @story.destroy
-  
+
   end
 
   private
